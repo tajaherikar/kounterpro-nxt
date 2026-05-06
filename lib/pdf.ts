@@ -7,7 +7,7 @@
 
 export interface PDFOptions {
   filename?: string
-  margin?: number | number[]
+  margin?: number | [number, number] | [number, number, number, number]
   image?: { type: string; quality: number }
   html2canvas?: { scale: number }
   jsPDF?: { orientation: 'portrait' | 'landscape'; unit: string; format: string }
@@ -29,7 +29,7 @@ export async function downloadPDF(elementId: string, filename: string = 'documen
       return
     }
 
-    const opt = {
+    const opt: any = {
       margin: options.margin ?? [10, 10, 10, 10],
       filename: filename,
       image: { type: 'jpeg', quality: 0.98 },
@@ -38,6 +38,7 @@ export async function downloadPDF(elementId: string, filename: string = 'documen
       ...options,
     }
 
+    // @ts-ignore - html2pdf library types are incomplete
     html2pdf().set(opt).from(element).save()
   } catch (error) {
     console.error('Error generating PDF:', error)
@@ -58,7 +59,7 @@ export async function generatePDFBlob(elementId: string, options: PDFOptions = {
       throw new Error(`Element with id "${elementId}" not found`)
     }
 
-    const opt = {
+    const opt: any = {
       margin: options.margin ?? [10, 10, 10, 10],
       image: { type: 'jpeg', quality: 0.98 },
       html2canvas: { scale: 2 },
@@ -67,6 +68,7 @@ export async function generatePDFBlob(elementId: string, options: PDFOptions = {
     }
 
     return new Promise<Blob | null>((resolve, reject) => {
+      // @ts-ignore - html2pdf library types are incomplete
       html2pdf()
         .set(opt)
         .from(element)
