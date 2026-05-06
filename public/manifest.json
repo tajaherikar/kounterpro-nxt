@@ -1,0 +1,28 @@
+{
+  "name": "KounterPro",
+  "short_name": "KounterPro",
+  "description": "Simple Invoice & Inventory Management for Small Businesses",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2845D6",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/assets/kounter-pro-logo.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "categories": ["productivity", "business"],
+  "screenshots": [
+    {
+      "src": "/assets/screenshot-1.png",
+      "sizes": "540x720",
+      "type": "image/png",
+      "form_factor": "narrow"
+    }
+  ]
+}

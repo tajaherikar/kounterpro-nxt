@@ -1,0 +1,98 @@
+/* app/globals.css
+ *
+ * Imports all existing KounterPro stylesheets (unchanged — preserves UI 1:1)
+ * then appends new-component styles (Toast, auth-loading spinner, etc.)
+ */
+
+/* ─── Existing stylesheets ───────────────────────────────────────────────── */
+@import url('/styles/styles.css');
+@import url('/styles/styles-new.css');
+@import url('/styles/dark-mode.css');
+@import url('/styles/invoice-templates.css');
+
+/* ─── Toast notifications ────────────────────────────────────────────────── */
+.toast-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  min-width: 260px;
+  max-width: 380px;
+  pointer-events: all;
+  animation: toastSlideIn 0.25s ease;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+}
+
+@keyframes toastSlideIn {
+  from { transform: translateX(120%); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+
+.toast-success { border-left: 4px solid #28a745; }
+.toast-error   { border-left: 4px solid #dc3545; }
+.toast-warning { border-left: 4px solid #f68048; }
+.toast-info    { border-left: 4px solid #2845D6; }
+
+.toast-success .toast-icon { color: #28a745; }
+.toast-error   .toast-icon { color: #dc3545; }
+.toast-warning .toast-icon { color: #f68048; }
+.toast-info    .toast-icon { color: #2845D6; }
+
+.toast-message { flex: 1; }
+
+.toast-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: #999;
+  display: flex;
+}
+
+.toast-close:hover { color: #333; }
+
+/* Dark mode toasts */
+body.dark-mode .toast {
+  background: #1e2535;
+  color: #e2e8f0;
+}
+
+/* ─── Auth loading screen ────────────────────────────────────────────────── */
+.auth-loading {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  color: #666;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid #e0e4f8;
+  border-top-color: #2845D6;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
